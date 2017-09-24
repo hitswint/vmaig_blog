@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap, Sitemap
+from django.contrib.sitemaps import GenericSitemap, Sitemap
 from django.core.urlresolvers import reverse
 
 from django.contrib import admin
@@ -66,6 +66,8 @@ sitemaps = {
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('blog.urls')),
+    url(r'', include('swint.urls')),
+    url(r'', include('freezingsimulation.urls')),
     url(r'', include('vmaig_comments.urls')),
     url(r'', include('vmaig_auth.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},

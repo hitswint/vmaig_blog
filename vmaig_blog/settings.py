@@ -40,7 +40,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 
+    'django.contrib.sites',
     'blog',
+    'swint',
+    'freezingsimulation',
     'vmaig_auth',
     'vmaig_comments',
     'vmaig_system'
@@ -92,7 +95,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'zh-cn'
+# LANGUAGE_CODE = 'zh-cn'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -137,7 +140,7 @@ LOGGING = {
         'handlers': {
             'null': {
                 'level': 'DEBUG',
-                'class': 'django.utils.log.NullHandler',
+                'class': 'django.utils.log.AdminEmailHandler',
                 },
             'console': {
                 'level': 'INFO',
@@ -198,19 +201,29 @@ CACHES = {
 
 
 # 分页配置
-PAGE_NUM = 5
+PAGE_NUM = 2
 
 # email配置
 # 如果想要支持ssl (比如qq邮箱) 见 https://github.com/bancek/django-smtp-ssl
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ''                       # SMTP地址 例如: smtp.163.com
-EMAIL_PORT = 25                       # SMTP端口 例如: 25
-EMAIL_HOST_USER = ''                  # 我自己的邮箱 例如: xxxxxx@163.com
-EMAIL_HOST_PASSWORD = ''              # 我的邮箱密码 例如  xxxxxxxxx
-EMAIL_SUBJECT_PREFIX = u'vmaig'       # 为邮件Subject-line前缀,默认是'[django]'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = ''                       # SMTP地址 例如: smtp.163.com
+# EMAIL_PORT = 25                       # SMTP端口 例如: 25
+# EMAIL_HOST_USER = ''                  # 我自己的邮箱 例如: xxxxxx@163.com
+# EMAIL_HOST_PASSWORD = ''              # 我的邮箱密码 例如  xxxxxxxxx
+# EMAIL_SUBJECT_PREFIX = u'vmaig'       # 为邮件Subject-line前缀,默认是'[django]'
 EMAIL_USE_TLS = True                  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 
+# SMTP地址
+EMAIL_HOST = 'smtp-mail.outlook.com'
+# SMTP端口
+EMAIL_PORT = 587
+# 邮箱地址
+EMAIL_HOST_USER = 'wguiqiang@hotmail.com'
+# 密码
+EMAIL_HOST_PASSWORD = 'hitswint'
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 # 七牛配置
 QINIU_ACCESS_KEY = ''

@@ -1,0 +1,320 @@
+{% extends "freezingsimulation/base.html" %}
+
+{% block main %}
+    <div>
+        <div id="freezingsimulation-vmaig-content">
+            <!-- 警告框 -->
+            <!-- <div class="well alert hidden-xs fade in"> -->
+            <!-- <button class="close" data-dismiss="alert" type="button">&times;</button> -->
+            {#{website_welcome}#}
+            <!-- </div> -->
+
+            <!-- <div class="visible-xs"> -->
+            <!-- <div class="search"> -->
+            <!-- <form class="form-inline clearfix" role="form" method="get" action="/search/"> -->
+            <!-- <input type="text" class="form-control" id="top-s" name="s"> -->
+            <!-- <button class="btn btn-vmaig"> -->
+            <!-- <span class="glyphicon glyphicon-search"></span> -->
+            <!-- </button> -->
+            <!-- </form> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- 首页文章列表 -->
+            <div id="home-post-list">
+                <!-- 首页轮播 -->
+                {#% if carousel_page_list%#}
+                {#% include "freezingsimulation/include/carousel.html"%#}
+                {#% endif%#}
+
+                <!--首页文章列表 -->
+                {#% if article_list %#}
+                {#% with post_list=article_list %#}
+                {#% for post in post_list %#}
+                {#% include "freezingsimulation/include/home_post.html" %#}
+                {#% endfor %#}
+                {#% endwith %#}
+                {#% endif %#}
+
+                <!-- 计算a+b的结果，实时显示在网页中。 -->
+                <!-- <div class="home-post well clearfix"> -->
+                <!-- <div class="row"> -->
+                <!-- <div class="col-sm-4"> -->
+                <!-- <p>请输入两个数字</p> -->
+                <!-- <form action="/freezingsimulation/add/" method="get"> -->
+                <!-- a: <input type="text" id="a" name="a"> <br> -->
+                <!-- b: <input type="text" id="b" name="b"> <br> -->
+                <!-- <p>result: <span id='result'></span></p> -->
+                <!-- <button type="button" id='sum'>提交</button> -->
+                <!-- </form> -->
+                <!-- </div> -->
+                <!-- <div class="col-sm-8"> -->
+                <!-- <figure class="thumbnail"> -->
+                <!-- <img src='../../static/img/article/default.jpg' alt="shit" height="200" alt=""> -->
+                <!-- </figure> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+
+                <!-- 根据颜色和数字过滤文件夹中的图片，实时显示在网页中。 -->
+                <!-- <div class="home-post well clearfix"> -->
+                <!-- <div class="row"> -->
+                <!-- <div class="col-sm-8"> -->
+                <!-- <p>请输入颜色和数字</p> -->
+                <!-- <form action="/freezingsimulation/get_pic/" method="get"> -->
+                <!-- color: <input type="text" id="color" name="color" value="red"> <br> -->
+                <!-- number: <input type="text" id="number" name="number" value="1"> <br> -->
+                <!-- <button type="button" id='getpic'>提交</button> -->
+                <!-- </form> -->
+                <!-- </div> -->
+                <!-- <div class="col-sm-4"> -->
+                <!-- <p><span id='picresult'></span></p> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+
+                <!-- 使用matplotlib绘制图片，实时显示在网页中。 -->
+                <!-- <div class="home-post well clearfix"> -->
+                <!-- <div class="row"> -->
+                <!-- <div class="col-sm-4"> -->
+                <!-- <p>请输入数字</p> -->
+                <!-- <form action="/freezingsimulation/plot/" method="get"> -->
+                <!-- max: <input type="text" id="plot_max" name="plot_max" value="100"> <br> -->
+                <!-- min: <input type="text" id="plot_min" name="plot_min" value="0"> <br> -->
+                <!-- <button type="button" id='plot'>提交</button> -->
+                <!-- </form> -->
+                <!-- </div> -->
+                <!-- <div class="col-sm-8"> -->
+                <!-- <p><span id='plotresult'></span></p> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+
+                <!-- 模拟冷冻过程，使用matplotlib绘制图片，实时显示在网页中。 -->
+                <div  class="home-post well clearfix" style="height: 750px;">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <form role="form" action="/freezingsimulation/simu/" method="get">
+                                <div class="form-group">
+                                    <p>请选择食品种类：</p>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">食品种类
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                            <li role="presentation" class="dropdown-header">肉类</li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">分割肉</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">牛肉</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">羊肉</a>
+                                            </li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation" class="dropdown-header">水果</li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">苹果</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">桃子</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">梨子</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <p>请输入温度和对流换热系数：</p>
+                                    <label for="food_product">食品温度</label>
+                                    <input type="text" id="food_product" name="food_product" value="30"> <br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="temperature">空气温度</label>
+                                    <input type="text" id="temperature" name="temperature" value="-30"> <br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="heattr">对流换热系数</label>
+                                    <input type="text" id="heattr" name="heattr" value="10"> <br>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="withpac" checked="">考虑食品包装
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="dropdown" id="pacmaterial">
+                                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown">包装材料
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">纸箱</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">铁箱</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <label for="pacthickness">包装材料厚度</label>
+                                    <input type="text" id="pacthickness" name="pacthickness" value="10"> <br>
+                                    <label for="airthickness">空气层厚度</label>
+                                    <input type="text" id="airthickness" name="airthickness" value="10"> <br>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="withshelf" checked="">考虑货架
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="dropdown" id="shelfmaterial">
+                                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown">货架材料
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">铁架</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a role="menuitem" tabindex="-1" href="#">木架</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <label for="shelfthickness">货架厚度</label>
+                                    <input type="text" id="shelfthickness" name="shelfthickness" value="10"> <br>
+                                </div>
+
+                                <button type="button" id='simu' class="btn btn-default">提交</button>
+                                <button type="button" id='cleardata' class="btn btn-default">清空</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-4">
+                            <span id='simuresultpng'></span>
+                        </div>
+                        <div class="col-sm-4">
+                            <span id='simuresultgif'></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <table class="table">
+                                <caption>模拟结果：</caption>
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>值</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="active">
+                                        <td>冷冻时间</td>
+                                        <td><span id='simu_freezing_time'></span></td></tr>
+                                    <tr class="success">
+                                        <td>冷冻速率</td>
+                                        <td><span id='simu_freezing_rate'></span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="home-post well clearfix"> -->
+                <!-- <div class="row"> -->
+                <!-- <div class="col-sm-4"> -->
+                <!-- <form role="form"> -->
+                <!-- <div class="form-group"> -->
+                <!-- <label for="name">名称</label> -->
+                <!-- <input type="text" class="form-control" id="name" placeholder="请输入名称"> -->
+                <!-- </div> -->
+                <!-- <div class="form-group"> -->
+                <!-- <input type="email" class="form-control" placeholder="Enter email"> -->
+                <!-- <label for="inputfile">文件输入</label> -->
+                <!-- <input type="file" id="inputfile"> -->
+                <!-- <p class="help-block">这里是块级帮助文本的实例。</p> -->
+                <!-- </div> -->
+                <!-- <div class="checkbox"> -->
+                <!-- <label> -->
+                <!-- <input type="checkbox">请打勾 -->
+                <!-- </label> -->
+                <!-- </div> -->
+                <!-- <button type="submit" class="btn btn-default">提交</button> -->
+                <!-- </form> -->
+                <!-- </div> -->
+                <!-- <div class="col-sm-8"> -->
+                <!-- <figure class="thumbnail"> -->
+                <!-- <img src='../../static/img/article/default.jpg' alt="shit" height="200"> -->
+                <!-- </figure> -->
+                <!-- </div> -->
+                <!-- </div><!--  --><!--  --><!--  --><!--  --> -->
+
+                <!-- </div> -->
+
+                <!--分页 -->
+                {#% if page_obj%#}
+                {#% include "freezingsimulation/include/pagination.html"%#}
+                {#% endif %#}
+            </div>
+        </div>
+
+        <!-- 右边的widgets -->
+        <!-- <div id="vmaig-side" class="col-md-4 col-lg-3 hidden-xs"> -->
+        {#% include "freezingsimulation/widgets/tags_cloud.html"%#}
+        {#% include "freezingsimulation/widgets/search.html"%#}
+        {#% include "freezingsimulation/widgets/hotest_posts.html"%#}
+        {#% include "vmaig_comments/latest_comments.html"%#}
+        {#% include "freezingsimulation/widgets/links.html"%#}
+        <!-- </div> -->
+    </div>
+    <script>
+     $(document).ready(function(){
+         $("#withpac").click(function(){
+             if(this.checked){
+                 $("#pacmaterial").removeAttr("disabled");
+                 $("#pacthickness").removeAttr("disabled");
+                 $("#airthickness").removeAttr("disabled");
+             }else{
+                 $("#pacmaterial").attr({"disabled":"disabled"});
+                 $("#pacthickness").attr({"disabled":"disabled"});
+                 $("#airthickness").attr({"disabled":"disabled"});
+             }
+         });
+         $("#withshelf").click(function(){
+             if(this.checked){
+                 $("#shelfmaterial").removeAttr("disabled");
+                 $("#shelfthickness").removeAttr("disabled");
+                 $("#shelfthickness").val("10");
+             }else{
+                 $("#shelfmaterial").attr({"disabled":"disabled"});
+                 $("#shelfthickness").attr({"disabled":"disabled"});
+                 $("#shelfthickness").val("0");
+             }
+
+         });
+         $("#simu").click(function(){
+             var food_product = $("#food_product").val();
+             var temperature = $("#temperature").val();
+             var heattr = $("#heattr").val();
+             var shelfthickness = $("#shelfthickness").val();
+
+             $.get("{% url 'freezingsimulation-simu' %}", {'food_product':food_product, 'temperature':temperature,'heattr':heattr, 'shelfthickness':shelfthickness}, function(ret){
+                 $('#simuresultpng').html('') //清空前面的结果
+                 $('#simuresultgif').html('') //清空前面的结果
+                 $('#simu_freezing_time').html('') //清空前面的结果
+                 $('#simu_freezing_rate').html('') //清空前面的结果
+                 $.each(ret, function(index, item){
+                     if(item.endsWith("png")){
+                         $('#simuresultpng').append('<img height="340" src="../../static/img/simu/'+item+'">');
+                     }else if(item.endsWith("gif")){
+                         $('#simuresultgif').append('<img height="340" src="../../static/img/simu/'+item+'">');
+                     }else if(item.endsWith("小时")){
+                         $('#simu_freezing_time').append(item);
+                     }
+                     else if(item.endsWith("cm/h")){
+                         $('#simu_freezing_rate').append(item);
+                     }
+                 })
+             })
+         });
+     });
+    </script>
+
+{% endblock %}

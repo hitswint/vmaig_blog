@@ -8,7 +8,7 @@ from django.core.exceptions import PermissionDenied
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.models import Site
 from django.utils.http import (base36_to_int, is_safe_url,
                                urlsafe_base64_decode, urlsafe_base64_encode)
 from vmaig_auth.forms import VmaigUserCreationForm, VmaigPasswordRestForm
@@ -93,7 +93,7 @@ class UserControl(View):
         errors = []
         # 验证表单是否正确
         if form.is_valid():
-            current_site = get_current_site(request)
+            current_site = Site.objects.get_current(request)
             site_name = current_site.name
             domain = current_site.domain
             title = u"欢迎来到 {} ！".format(site_name)

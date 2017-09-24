@@ -1,0 +1,89 @@
+{% extends "swint/base.html" %}
+
+{% block main %}
+    {% url 'swint-category-detail-view' article.category.name as category_url %}
+    
+    <div class="row">
+        <div id="swint-vmaig-content" class="col-md-8 col-lg-9">
+            <div id="article-page" class="well">
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'swint-index-view' %}"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="{{category_url}}">{{article.category}}</a></li>
+                    <li class="hidden-xs"><a><span class="glyphicon glyphicon-calendar"></span> {{article.create_time|date:"Y-m-d"}}</a></li>
+                    <li><a>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        {{article.view_times}}
+                    </a></li>
+                    <li><a href="{{article_share_url}}">
+                        <span class="glyphicon glyphicon-share"></span>
+                        分享
+                    </a></li>
+
+                    <li class="pull-right"><a>
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{article.author}}
+                    </a></li>
+                </ol>
+
+                <div id="article">
+                    {% if sent %}
+                        <h1>E-mail successfully sent</h1>
+                        <p>
+                            "{{ article.title }}" was successfully sent to {{ cd.to }}.
+                        </p>
+                    {% else %}
+                        <h1>Share "{{ article.title }}" by e-mail</h1>
+                        <form action="." method="post">
+                            {{ emailform.as_p }}
+                            {% csrf_token %}
+                            <input type="submit" value="Send e-mail">
+                        </form>
+                    {% endif %}
+                    <!-- <div class="article-content"> -->
+                    {#% autoescape off%#}
+                    {#{article.content}#}
+                    {#% endautoescape %#}
+                    <!-- </div> -->
+                </div>
+            </div>
+
+            <!--评论框 -->
+            {#% include "./swint-vmaig_comments/swint-vmaig_comments.html"%#}
+
+        </div>
+
+        <div id="swint-vmaig-side" class="col-md-4 col-lg-3 hidden-xs">
+
+            {% include "swint/widgets/tags_cloud.html"%}
+            {% include "swint/widgets/search.html"%}
+            {% include "swint/widgets/hotest_posts.html"%}
+            {#% include "./swint-vmaig_comments/latest_comments.html"%#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block css%}
+    <link type="text/css" rel="stylesheet" href="/static/syntaxhighlighter/styles/shCoreDefault.css"/>
+    <style type="text/css">
+     #article {
+         font-size:14px;
+         color:#000;
+     }
+
+     blockquote {
+         font-size:14px;
+     }
+    </style>
+{% endblock %}
+
+
+{% block js%}
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPython.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPowerShell.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+{% endblock%}

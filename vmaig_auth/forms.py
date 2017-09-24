@@ -2,7 +2,7 @@
 from django import forms
 from vmaig_auth.models import VmaigUser
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.models import Site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.core.mail import send_mail
@@ -136,7 +136,7 @@ class VmaigPasswordRestForm(forms.Form):
     def save(self, from_email=None, request=None,
              token_generator=default_token_generator):
         email = self.cleaned_data['email']
-        current_site = get_current_site(request)
+        current_site = Site.objects.get_current(request)
         site_name = current_site.name
         domain = current_site.domain
         uid = base64.urlsafe_b64encode(

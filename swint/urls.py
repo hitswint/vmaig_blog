@@ -1,0 +1,50 @@
+from django.conf.urls import url
+from django.views.generic import TemplateView, DetailView, RedirectView
+from swint.views import (
+    Index_View,
+    Category_View,
+    Article_View,
+    Article_Share_View,
+    User_View,  # , , AllView, SearchView,
+    # ColumnView, , NewsView, TagView, CategoryView
+)
+# from swint.models import Article, Category
+
+urlpatterns = [
+    url(r'^swint/category/(?P<category>\w+)/$',
+        Category_View.as_view(),
+        name='swint-category-detail-view'),
+    url(r'^swint/$', Index_View.as_view(), name='swint-index-view'),
+    url(r'^swint/article/(?P<id>\w+)/$',
+        Article_View.as_view(),
+        name='swint-article-detail-view'),
+    url(r'^swint/article/(?P<id>\d+)/share/$',
+        Article_Share_View.as_view(),
+        name='swint-article-share-view'),
+    # url(r'^/all/$', AllView.as_view(), name='all-view'),
+    # url(r'^/search/$', SearchView.as_view()),
+    # url(r'^/login/$',
+    #     TemplateView.as_view(template_name="blog/login.html"),
+    #     name='login-view'),
+    # url(r'^/register/$',
+    #     TemplateView.as_view(template_name="blog/register.html"),
+    #     name='register-view'),
+    url(r'^swint/go-to-django/$',
+        RedirectView.as_view(url='http://djangoproject.com'),
+        name='swint-go-to-django'),
+    url(r'^swint/forgetpassword/$',
+        TemplateView.as_view(template_name="swint/forgetpassword.html"),
+        name='swint-forgetpassword-view'),
+    # url(r'^/resetpassword/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
+    #     TemplateView.as_view(template_name="blog/resetpassword.html"),
+    #     name='resetpassword-view'),
+    # url(r'^/column/(?P<column>\w+)/$',
+    #     ColumnView.as_view(), name='column-detail-view'),
+    url(r'^swint/user/(?P<slug>\w+)$',
+        User_View.as_view(),
+        name='swint-user-view'),
+    # url(r'^/news/$', NewsView.as_view(), name='news-view'),
+    # url(r'^/news/(?P<pk>\w+)$',
+    #     DetailView.as_view(model=News), name='news-detail-view'),
+    # url(r'^/tag/(?P<tag>\w+)/$', TagView.as_view(), name='tag-detail-view'),
+]
