@@ -24,10 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p1p2e^77+6ex*1@-s6hzcx7l3bx#g2q0w1za1c-x-1p@n6z^x*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
+# DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ',]
 
 # Application definition
 
@@ -46,7 +45,8 @@ INSTALLED_APPS = (
     'freezingsimulation',
     'vmaig_auth',
     'vmaig_comments',
-    'vmaig_system'
+    'vmaig_system',
+    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,6 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # 设置user model
 AUTH_USER_MODEL = "vmaig_auth.VmaigUser"

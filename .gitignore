@@ -9,3 +9,4 @@ tx_*.jpg
 /freezingsimulation/static/img/simu/*
 /freezingsimulation/static/img/plot/*
 /freezingsimulation/static/img/pic/*
+/static/*
