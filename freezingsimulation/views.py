@@ -91,7 +91,7 @@ class Freezingsimu_View(Base_Mixin, ListView):
 
         file_dir = 'static/img/simu/'
         plot_file_base_name = 'simu_{}_{}_{}_{}'.format(
-            food_product, temperature, heattr, shelfthickness)
+            int(food_product), int(temperature), int(heattr), int(shelfthickness))
 
         # Doing simulation actually.
         Tc, Ts_top, Ts_bottom, qq_top, qq_bottom, time, T_all, H_all = fd.freezing_simu(
