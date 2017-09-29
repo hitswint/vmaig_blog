@@ -302,9 +302,9 @@
                  $('#simu_freezing_rate').html('') //清空前面的结果
                  $.each(ret, function(index, item){
                      if(item.endsWith("png")){
-                         $('#simuresultpng').append('<img height="340" src="../../static/img/simu/'+item+'">');
+                         $('#simuresultpng').append('<img height="340" src="/home/swint/git-repo/vmaig_blog/freezingsimulation/static/img/simu/'+item+'">');
                      }else if(item.endsWith("gif")){
-                         $('#simuresultgif').append('<img height="340" src="../../static/img/simu/'+item+'">');
+                         $('#simuresultgif').append('<img height="340" src="/home/swint/git-repo/vmaig_blog/freezingsimulation/static/img/simu/'+item+'">');
                      }else if(item.endsWith("小时")){
                          $('#simu_freezing_time').append(item);
                      }
