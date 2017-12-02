@@ -1,6 +1,9 @@
+{% url 'index-view' as index_url %}
+{% url 'freezingsimulation-index-view' as freezingsimulation_index_url %}
+{% url 'swint-index-view' as swint_index_url %}
 {% url 'freezingsimulation-simu-view' as freezingsimu_url %}
-{#% url 'all-view' as all_url %#}
-{#% url 'news-view' as news_url %#}
+{#% url 'storage-view' as storage_url %#}
+{#% url 'refrigeration-view' as refrigeration_url %#}
 {% url 'freezingsimulation-forgetpassword-view' as forgetpassword_url %}
 {% url 'freezingsimulation-user-view' 'changetx' as changetx_url%}
 {% url 'freezingsimulation-user-view' 'changepassword' as changepassword_url%}
@@ -21,19 +24,37 @@
         <div class="collapse navbar-collapse" id="freezingsimulation-vmaig-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
+                    <a href="{{index_url}}">
+                        <span class="glyphicon glyphicon-home"></span>
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="{{freezingsimulation_index_url}}">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        FreezingSimulation
+                    </a>
+                </li>
+                <li>
+                    <a href="{{swint_index_url}}">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        swint
+                    </a>
+                </li>
+                <li class="">
                     <a href="{{freezingsimu_url}}">
                         <span class="glyphicon glyphicon-home"></span>
                         食品单体模拟
                     </a>
                 </li>
                 <li>
-                    <a href="{{all_url}}">
+                    <a href="{{storage_url}}">
                         <span class="glyphicon glyphicon-globe"></span>
                         冷库气流组织
                     </a>
                 </li>
                 <li>
-                    <a href="{{news_url}}">
+                    <a href="{{refrigeration_url}}">
                         <span class="glyphicon glyphicon-star-empty"></span>
                         制冷系统优化
                     </a>

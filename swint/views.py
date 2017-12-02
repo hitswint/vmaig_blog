@@ -16,7 +16,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from numpy import linspace, sin, shape
-import swint.fd_nopac as fd
+# import swint.fd_nopac as fd
 # django自带的发送邮件的模块发送邮件失败。
 from django.core.mail import send_mail
 # Python对SMTP支持有smtplib和email两个模块，email负责构造邮件，smtplib负责发送邮件。

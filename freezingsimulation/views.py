@@ -89,7 +89,7 @@ class Freezingsimu_View(Base_Mixin, ListView):
         heattr = float(heattr)
         shelfthickness = float(shelfthickness)
 
-        file_dir = '/home/swint/git-repo/vmaig_blog/freezingsimulation/static/img/simu/'
+        file_dir = 'static/img/simu/'
         plot_file_base_name = 'simu_{}_{}_{}_{}'.format(
             int(food_product), int(temperature), int(heattr), int(shelfthickness))
 

@@ -1,4 +1,6 @@
-{% url 'swint-index-view' as index_url %}
+{% url 'index-view' as index_url %}
+{% url 'freezingsimulation-index-view' as freezingsimulation_index_url %}
+{% url 'swint-index-view' as swint_index_url %}
 {#% url 'all-view' as all_url %#}
 {#% url 'news-view' as news_url %#}
 {% url 'swint-forgetpassword-view' as forgetpassword_url %}
@@ -27,15 +29,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{all_url}}">
-                        <span class="glyphicon glyphicon-globe"></span>
-                        全部文章
+                    <a href="{{freezingsimulation_index_url}}">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        FreezingSimulation
                     </a>
                 </li>
                 <li>
-                    <a href="{{news_url}}">
+                    <a href="{{swint_index_url}}">
                         <span class="glyphicon glyphicon-star-empty"></span>
-                        资讯
+                        swint's 首页
                     </a>
                 </li>
 
@@ -88,7 +90,7 @@
                 {% endif %}
             </ul>
 
-            <span class="navbar-text navbar-right">——分享Geek生活</span>
+            <!-- <span class="navbar-text navbar-right">——分享Geek生活</span> -->
 
         </div>
     </div>

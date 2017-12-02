@@ -26,13 +26,6 @@ body,html {
     padding: 10px;
     padding-bottom: 20px;  /* 不至被footer盖住 */
 }
-footer {
-    position: absolute;
-    bottom: 0px;
-    /* height: 0px; */
-    width: 100%;
-    background:#ccc;
-}
 
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -59,7 +52,7 @@ a:hover{
 }
 
 #swint-vmaig-main{
-    padding:10px 0px;
+    padding:0px 0px;
 }
 
 .display-none {
@@ -71,6 +64,11 @@ a:hover{
 }
 
 footer {
+    position: absolute;
+    bottom: 0px;
+    /* height: 50px; */
+    width: 100%;
+    background:#ccc;
     padding: 10px 0;
     color: #fff;
     text-align: center;
@@ -484,18 +482,22 @@ footer {
     border:solid inset #EEE;
 }
 
+/* .navbar-swint-vmaig{ */
+/*     background-color:#000; */
+/* } */
+
 .navbar-swint-vmaig .navbar-brand{
     font-weight:bold;
     font-size:25px;
     margin-right:10px;
-    color:#fff;
+    color:#999;
     text-shadow: 1px 2px 5px rgba(255, 255, 255, 0.1), 0px 0px 30px rgba(255, 255, 255, 0.125);
 }
 
 .navbar-swint-vmaig .navbar-text{
     margin:30px 0px 0px 0px;
     font-weight:bold;
-    color:#000;
+    color:#999;
     text-shadow: 1px 2px 5px rgba(255, 255, 255, 0.1), 0px 0px 30px rgba(255, 255, 255, 0.125);
 }
 
