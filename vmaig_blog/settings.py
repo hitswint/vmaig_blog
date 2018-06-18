@@ -16,7 +16,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -24,30 +23,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p1p2e^77+6ex*1@-s6hzcx7l3bx#g2q0w1za1c-x-1p@n6z^x*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.106']
+# DEBUG = False
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sitemaps',
-    'django.contrib.sites',
-    'blog',
-    'swint',
-    'pipe_gallery_simu',
-    'freezingsimulation',
-    'vmaig_auth',
-    'vmaig_comments',
-    'vmaig_system',
-    'gunicorn',
-)
+INSTALLED_APPS = ('django.contrib.admin', 'django.contrib.auth',
+                  'django.contrib.contenttypes', 'django.contrib.sessions',
+                  'django.contrib.messages', 'django.contrib.staticfiles',
+                  'django.contrib.sitemaps', 'django.contrib.sites', 'blog',
+                  'swint', 'pipe_gallery_simu', 'freezingsimulation',
+                  'vmaig_auth', 'vmaig_comments', 'vmaig_system', 'gunicorn', )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,8 +44,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-)
+    'django.middleware.security.SecurityMiddleware', )
 
 ROOT_URLCONF = 'vmaig_blog.urls'
 
@@ -80,7 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vmaig_blog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -90,7 +75,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -105,7 +89,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -115,52 +98,48 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # 设置user model
 AUTH_USER_MODEL = "vmaig_auth.VmaigUser"
 
-
 # log配置
 LOG_FILE = "./all.log"
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
-
-        'filters': {
-            'require_debug_false': {
-                '()': 'django.utils.log.RequireDebugFalse'
-            }
-        },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
     'formatters': {
         'simple': {
             'format': '[%(levelname)s] %(module)s : %(message)s'
         },
         'verbose': {
-            'format':
-            '[%(asctime)s] [%(levelname)s] %(module)s : %(message)s'
+            'format': '[%(asctime)s] [%(levelname)s] %(module)s : %(message)s'
         }
     },
-
-        'handlers': {
-            'null': {
-                'level': 'DEBUG',
-                'class': 'django.utils.log.AdminEmailHandler',
-            },
-            'console': {
-                'level': 'INFO',
-                'class': 'logging.StreamHandler',
-                'formatter': 'verbose'
-            },
-            'file': {
-                'level': 'INFO',
-                'class': 'logging.FileHandler',
-                'formatter': 'verbose',
-                'filename': LOG_FILE,
-                'mode': 'a',
-            },
-            'mail_admins': {
-                'level': 'ERROR',
-                'class': 'django.utils.log.AdminEmailHandler',
-                'filters': ['require_debug_false']
-            }
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.AdminEmailHandler',
         },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': LOG_FILE,
+            'mode': 'a',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false']
+        }
+    },
     'loggers': {
         '': {
             'handlers': ['file', 'console'],
@@ -179,7 +158,6 @@ LOGGING = {
         },
     }
 }
-
 
 # cache配置
 CACHES = {
@@ -200,7 +178,6 @@ CACHES = {
     },
 }
 
-
 # 分页配置
 PAGE_NUM = 2
 
@@ -212,7 +189,7 @@ PAGE_NUM = 2
 # EMAIL_HOST_USER = ''                  # 我自己的邮箱 例如: xxxxxx@163.com
 # EMAIL_HOST_PASSWORD = ''              # 我的邮箱密码 例如  xxxxxxxxx
 # EMAIL_SUBJECT_PREFIX = u'vmaig'       # 为邮件Subject-line前缀,默认是'[django]'
-EMAIL_USE_TLS = True                  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 
 # SMTP地址
 EMAIL_HOST = 'smtp-mail.outlook.com'
@@ -225,7 +202,6 @@ EMAIL_HOST_PASSWORD = 'hitswint'
 # ACCOUNT_EMAIL_VERIFICATION = 'none'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
 # 七牛配置
 QINIU_ACCESS_KEY = ''
 QINIU_SECRET_KEY = ''
@@ -235,3 +211,6 @@ QINIU_URL = ''
 # 网站标题等内容配置
 WEBSITE_TITLE = u'Swint\'s blog'
 WEBSITE_WELCOME = u'欢迎来到Vmaig'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

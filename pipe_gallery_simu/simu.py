@@ -312,7 +312,7 @@ def main(*, Num_pipegallery, Length_pipegallery, Num, T_gallery, T_gas_in,
         loc='upper right', prop=fm.FontProperties(family='KaiTi', size=32))
 
     fig1.tight_layout()
-    fig1.savefig("static/img/simu/" + plot_file)
+    fig1.savefig("media/pipe_gallery_simu/" + plot_file)
     plt.close(fig1)
     return plot_file, '{:.2f} ℃ T_gas_out'.format(
         gas_obj.T[-1]), '{:.2f} ℃ T_air_out'.format(

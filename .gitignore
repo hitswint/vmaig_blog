@@ -7,3 +7,4 @@ tx_*.jpg
 *.swp
 *.un~
 /static/*
+/media/*

@@ -89,9 +89,10 @@ class Freezingsimu_View(Base_Mixin, ListView):
         heattr = float(heattr)
         shelfthickness = float(shelfthickness)
 
-        file_dir = 'static/img/simu/'
+        file_dir = 'media/freezingsimulation/'
         plot_file_base_name = 'simu_{}_{}_{}_{}'.format(
-            int(food_product), int(temperature), int(heattr), int(shelfthickness))
+            int(food_product),
+            int(temperature), int(heattr), int(shelfthickness))
 
         # Doing simulation actually.
         Tc, Ts_top, Ts_bottom, qq_top, qq_bottom, time, T_all, H_all = fd.freezing_simu(
@@ -208,7 +209,7 @@ class Category_View(Base_Mixin, ListView):
         category = self.kwargs.get('category', '')
         try:
             article_list = \
-                           CategoryFreezingsimu.objects.get(name=category).articlefreezingsimulation_set.all()
+                CategoryFreezingsimu.objects.get(name=category).articlefreezingsimulation_set.all()
         except CategoryFreezingsimu.DoesNotExist:
             logger.error(u'[Category_View]此分类不存在:[%s]' % category)
             raise Http404
@@ -251,9 +252,9 @@ class User_View(Base_Mixin, TemplateView):
 
         if slug == 'notification':
             context['notifications'] = \
-                                       self.request.user.to_user_notification_set.order_by(
-                                           '-create_time'
-                                       ).all()
+                self.request.user.to_user_notification_set.order_by(
+                    '-create_time'
+                ).all()
 
         return context
 

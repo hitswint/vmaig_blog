@@ -121,9 +121,9 @@
                  $("#loading")[0].style.display = "none";
                  $.each(ret, function(index, item){
                      if(item.endsWith("png")){
-                         $('#simuresultpng').append('<img height="600" src="/static/img/simu/'+item+'">');
+                         $('#simuresultpng').append('<img height="600" src="/media/pipe_gallery_simu/'+item+'">');
                      }else if(item.endsWith("gif")){
-                         $('#simuresultgif').append('<img height="600" src="/static/img/simu/'+item+'">');
+                         $('#simuresultgif').append('<img height="600" src="/media/pipe_gallery_simu/'+item+'">');
                      }else if(item.endsWith("T_gas_out")){
                          $('#T_gas_out').append(item);
                      }else if(item.endsWith("T_air_out")){

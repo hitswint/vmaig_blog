@@ -315,9 +315,9 @@
                  $("#loading")[0].style.display = "none";
                  $.each(ret, function(index, item){
                      if(item.endsWith("png")){
-                         $('#simuresultpng').append('<img height="340" src="/static/img/simu/'+item+'">');
+                         $('#simuresultpng').append('<img height="340" src="/media/freezingsimulation/'+item+'">');
                      }else if(item.endsWith("gif")){
-                         $('#simuresultgif').append('<img height="340" src="/static/img/simu/'+item+'">');
+                         $('#simuresultgif').append('<img height="340" src="/media/freezingsimulation/'+item+'">');
                      }else if(item.endsWith("小时")){
                          $('#simu_freezing_time').append(item);
                      }
