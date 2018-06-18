@@ -26,7 +26,7 @@ SECRET_KEY = 'p1p2e^77+6ex*1@-s6hzcx7l3bx#g2q0w1za1c-x-1p@n6z^x*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '67.209.178.147', '192.168.1.102', ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.106']
 
 # Application definition
 
@@ -38,10 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-
     'django.contrib.sites',
     'blog',
     'swint',
+    'pipe_gallery_simu',
     'freezingsimulation',
     'vmaig_auth',
     'vmaig_comments',

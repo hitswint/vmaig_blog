@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <!--手机html -->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <title>{{website_title}}</title>
+        <link rel="shortcut icon" href="/static/img/favicon.ico"/>
+        <link rel="bookmark" href="/static/img/favicon.ico"/>
+        <link href="/static/pipe_gallery_simu/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/pipe_gallery_simu/css/pipegallerysimu-vmaig.css" rel="stylesheet">
+
+        {% block css%} {% endblock%}
+    </head>
+    <body>
+        <!-- 导航栏 -->
+        {% include "pipe_gallery_simu/include/nav.html"%}
+        <!-- 文章列表 与 侧边的东西 -->
+        <div id="pipegallerysimu-vmaig">
+            <div id="pipegallerysimu-vmaig-main">
+                <div id="pipegallerysimu-vmaig-content" class="container">
+                    {%block main%} {% endblock %}
+                </div>
+
+                <footer>
+                    <div class="container">
+                        <div class="text-center">Based on
+                            <a href="https://www.djangoproject.com/">Dajngo{{django_version}}, </a>
+                            <a href="http://getbootstrap.com/">Bootsratp3.</a>
+                            <a href="/sitemap.xml">网站地图</a>
+                        </div>
+
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="/static/pipe_gallery_simu/vendor/jquery/jquery.min.js"></script>
+        <script src="/static/pipe_gallery_simu/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        {% block js%}{% endblock%}
+    </body>
+
+</html>

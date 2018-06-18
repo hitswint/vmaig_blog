@@ -6,7 +6,4 @@ tx_*.jpg
 */migrations/*
 *.swp
 *.un~
-/freezingsimulation/static/img/simu/*
-/freezingsimulation/static/img/plot/*
-/freezingsimulation/static/img/pic/*
 /static/*

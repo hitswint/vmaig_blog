@@ -190,6 +190,11 @@
                                 <button type="button" id='cleardata' class="btn btn-default">清空</button>
                             </form>
                         </div>
+                        <div class="col-sm-8">
+                            <div id="loading" style="height:100px;line-height:100px;text-align:center;display:none;">
+                                <img src="/static/pipe_gallery_simu/gif/loading.gif" alt="" width="80">
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <span id='simuresultpng'></span>
                         </div>
@@ -264,7 +269,11 @@
         {#% include "freezingsimulation/widgets/links.html"%#}
         <!-- </div> -->
     </div>
-    <script>
+
+{% endblock %}
+
+{% block js %}
+    <script language="javascript" type="text/javascript">
      $(document).ready(function(){
          $("#withpac").click(function(){
              if(this.checked){
@@ -290,16 +299,20 @@
 
          });
          $("#simu").click(function(){
+             $('#simuresultpng').html('') //清空前面的结果
+             $('#simuresultgif').html('') //清空前面的结果
+             $('#simu_freezing_time').html('') //清空前面的结果
+             $('#simu_freezing_rate').html('') //清空前面的结果
+
+             $("#loading")[0].style.display = "block";
+
              var food_product = $("#food_product").val();
              var temperature = $("#temperature").val();
              var heattr = $("#heattr").val();
              var shelfthickness = $("#shelfthickness").val();
 
              $.get("{% url 'freezingsimulation-simu' %}", {'food_product':food_product, 'temperature':temperature,'heattr':heattr, 'shelfthickness':shelfthickness}, function(ret){
-                 $('#simuresultpng').html('') //清空前面的结果
-                 $('#simuresultgif').html('') //清空前面的结果
-                 $('#simu_freezing_time').html('') //清空前面的结果
-                 $('#simu_freezing_rate').html('') //清空前面的结果
+                 $("#loading")[0].style.display = "none";
                  $.each(ret, function(index, item){
                      if(item.endsWith("png")){
                          $('#simuresultpng').append('<img height="340" src="/static/img/simu/'+item+'">');
@@ -316,5 +329,4 @@
          });
      });
     </script>
-
 {% endblock %}

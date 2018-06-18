@@ -7,15 +7,8 @@
         <title>{{website_title}}</title>
         <link rel="shortcut icon" href="/static/img/favicon.ico"/>
         <link rel="bookmark" href="/static/img/favicon.ico"/>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/freezingsimulation-vmaig.css">
-        <!-- <link rel="stylesheet" href="/static/css/freezingsimulation-vmaig_comments.css"> -->
-        <!-- <link rel="stylesheet" href="/static/css/freezingsimulation-vmaig_auth.css"> -->
-
-        <script src="https://cdn.staticfile.org/jquery/2.1.3/jquery.js"></script>
-        <script src="https://cdn.staticfile.org/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdn.staticfile.org/jquery/2.1.3/jquery.min.map"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="/static/freezingsimulation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/freezingsimulation/css/freezingsimulation-vmaig.css" rel="stylesheet">
 
         {% block css%} {% endblock%}
     </head>
@@ -42,8 +35,10 @@
             </div>
         </div>
 
-    </body>
+        <script src="/static/freezingsimulation/vendor/jquery/jquery.min.js"></script>
+        <script src="/static/freezingsimulation/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    {% block js%}{% endblock%}
+        {% block js%}{% endblock%}
+    </body>
 
 </html>

@@ -1,0 +1,144 @@
+{% extends "pipe_gallery_simu/base.html" %}
+
+{% block main %}
+    <div>
+        <div id="pipegallerysimu-vmaig-content">
+            <div id="home-post-list">
+                <div  class="home-post well clearfix" style="height: 750px;">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <form role="form" action="/pipe_gallery/simu/" method="get">
+                                <div class="form-group">
+                                    <label for="T_gas_in">进口温度</label>
+                                    <input type="text" id="T_gas_in" name="T_gas_in" value="10"> <br>
+                                    <label for="V_gas">流速</label>
+                                    <input type="text" id="V_gas" name="V_gas" value="5"> <br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="T_air_in">进口温度</label>
+                                    <input type="text" id="T_air_in" name="T_air_in" value="-10"> <br>
+                                    <label for="V_air">流速</label>
+                                    <input type="text" id="V_air" name="V_air" value="0.5"> <br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Num_pipegallery">机械通风管廊数</label>
+                                    <input type="text" id="Num_pipegallery" name="Num_pipegallery" value="20"> <br>
+                                    <label for="Length_pipegallery">机械通风管廊长度</label>
+                                    <input type="text" id="Length_pipegallery" name="Length_pipegallery" value="500"> <br>
+                                    <label for="Num">单段管廊离散数</label>
+                                    <input type="text" id="Num" name="Num" value="50"> <br>
+                                    <label for="T_gallery">管廊内壁温度</label>
+                                    <input type="text" id="T_gallery" name="T_gallery" value="5"> <br>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="radiation_included_p" checked="">考虑辐射换热
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blackbody_coefficient">黑体辐射系数</label>
+                                    <input type="text" id="blackbody_coefficient" name="blackbody_coefficient" value="5.67"> <br>
+                                </div>
+                                <button type="button" id='simu' class="btn btn-default">提交</button>
+                                <button type="button" id='cleardata' class="btn btn-default">清空</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-8">
+                            <div id="loading" style="height:100px;line-height:100px;text-align:center;display:none;">
+                                <img src="/static/pipe_gallery_simu/gif/loading.gif" alt="" width="80">
+                            </div>
+                            <span id='simuresultpng'></span>
+                        </div>
+                        <!-- <div class="col-sm-4"> -->
+                        <!-- <span id='simuresultgif'></span> -->
+                        <!-- </div> -->
+                        <div class="col-sm-2">
+                            <table class="table">
+                                <caption>模拟结果：</caption>
+                                <thead>
+                                    <tr>
+                                        <th>参数</th>
+                                        <th>值</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="active">
+                                        <td>燃气出口温度</td>
+                                        <td><span id='T_gas_out'></span></td></tr>
+                                    <tr class="success">
+                                        <td>空气出口温度</td>
+                                        <td><span id='T_air_out'></span></td></tr>
+                                    <tr class="info">
+                                        <td>管道内壁温度</td>
+                                        <td><span id='T_wall_i'></span></td></tr>
+                                    <tr class="warning">
+                                        <td>管道外壁温度</td>
+                                        <td><span id='T_wall_o'></span></td></tr>
+                                    <!-- <tr class="success"> -->
+                                        <!-- <td>冷冻速率</td> -->
+                                        <!-- <td><span id='simu_freezing_rate'></span></td></tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script language="javascript" type="text/javascript">
+     $(document).ready(function(){
+         $("#radiation_included_p").click(function(){
+             if(this.checked){
+                 $("#blackbody_coefficient").removeAttr("disabled");
+             }else{
+                 $("#blackbody_coefficient").attr({"disabled":"disabled"});
+             }
+         });
+         $("#simu").click(function(){
+             $('#simuresultpng').html('')
+             $('#simuresultgif').html('')
+             $('#T_gas_out').html('')
+             $('#T_air_out').html('')
+             $('#T_wall_i').html('')
+             $('#T_wall_o').html('')
+             $('#simu_freezing_rate').html('')
+
+             $("#loading")[0].style.display = "block";
+
+             var Num_pipegallery = $("#Num_pipegallery").val();
+             var Length_pipegallery = $("#Length_pipegallery").val();
+             var Num = $("#Num").val();
+             var T_gallery = $("#T_gallery").val();
+             var T_gas_in = $("#T_gas_in").val();
+             var T_air_in = $("#T_air_in").val();
+             var V_gas = $("#V_gas").val();
+             var V_air = $("#V_air").val();
+             var radiation_included_p = document.getElementById("radiation_included_p").checked;
+
+             $.get("{% url 'pipegallery-simu-view' %}", {'Num_pipegallery':Num_pipegallery, 'Length_pipegallery':Length_pipegallery, 'Num':Num, 'T_gallery':T_gallery, 'T_gas_in':T_gas_in, 'T_air_in':T_air_in, 'V_gas':V_gas, 'V_air':V_air, 'radiation_included_p':radiation_included_p}, function(ret){
+                 $("#loading")[0].style.display = "none";
+                 $.each(ret, function(index, item){
+                     if(item.endsWith("png")){
+                         $('#simuresultpng').append('<img height="600" src="/static/img/simu/'+item+'">');
+                     }else if(item.endsWith("gif")){
+                         $('#simuresultgif').append('<img height="600" src="/static/img/simu/'+item+'">');
+                     }else if(item.endsWith("T_gas_out")){
+                         $('#T_gas_out').append(item);
+                     }else if(item.endsWith("T_air_out")){
+                         $('#T_air_out').append(item);
+                     }else if(item.endsWith("T_wall_i")){
+                         $('#T_wall_i').append(item);
+                     }else if(item.endsWith("T_wall_o")){
+                         $('#T_wall_o').append(item);
+                     }
+                     else if(item.endsWith("cm/h")){
+                         $('#simu_freezing_rate').append(item);
+                     }
+                 })
+             })
+         });
+     });
+    </script>
+{% endblock %}

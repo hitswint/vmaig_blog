@@ -62,6 +62,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('blog.urls')),
     url(r'', include('swint.urls')),
+    url(r'', include('pipe_gallery_simu.urls')),
     url(r'', include('freezingsimulation.urls')),
     url(r'', include('vmaig_comments.urls')),
     url(r'', include('vmaig_auth.urls')),
