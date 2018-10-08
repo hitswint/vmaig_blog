@@ -7,6 +7,9 @@ matplotlib.use('Agg')
 import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 
+zh_font = fm.FontProperties(
+    fname='/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc', size=30)
+
 
 # * parameters for gas
 class Gas(object):
@@ -288,11 +291,9 @@ def main(*, Num_pipegallery, Length_pipegallery, Num, T_gallery, T_gas_in,
         for x in np.linspace(0, wall_obj.Length_pipegallery * wall_obj.
                              Num_pipegallery, wall_obj.Num_pipegallery + 1)
     ]
-    ax1.set_xlabel(u'长度(m)', fontproperties='KaiTi', fontsize=32)
-    ax1.set_ylabel(
-        u'温度($\,^\circ\mathrm{C}$)', fontproperties='KaiTi', fontsize=32)
-    ax1.legend(
-        loc='upper right', prop=fm.FontProperties(family='KaiTi', size=32))
+    ax1.set_xlabel(u'长度(m)', fontproperties=zh_font)
+    ax1.set_ylabel(u'温度($\,^\circ\mathrm{C}$)', fontproperties=zh_font)
+    ax1.legend(loc='upper right', prop=zh_font)
 
     ax2_x = np.arange(0,
                       wall_obj.Length_pipegallery * wall_obj.Num_pipegallery,
@@ -305,11 +306,9 @@ def main(*, Num_pipegallery, Length_pipegallery, Num, T_gallery, T_gas_in,
         for x in np.linspace(0, wall_obj.Length_pipegallery * wall_obj.
                              Num_pipegallery, wall_obj.Num_pipegallery + 1)
     ]
-    ax2.set_xlabel(u'长度(m)', fontproperties='KaiTi', fontsize=32)
-    ax2.set_ylabel(
-        u'温度($\,^\circ\mathrm{C}$)', fontproperties='KaiTi', fontsize=32)
-    ax2.legend(
-        loc='upper right', prop=fm.FontProperties(family='KaiTi', size=32))
+    ax2.set_xlabel(u'长度(m)', fontproperties=zh_font)
+    ax2.set_ylabel(u'温度($\,^\circ\mathrm{C}$)', fontproperties=zh_font)
+    ax2.legend(loc='upper right', prop=zh_font)
 
     fig1.tight_layout()
     fig1.savefig("media/pipe_gallery_simu/" + plot_file)
